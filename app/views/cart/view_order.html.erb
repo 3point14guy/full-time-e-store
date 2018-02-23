@@ -1,14 +1,22 @@
 
 <h2>My Cart</h2>
 
-<div>
+<div class="container">
+	<% @total = 0 %>
   <% @line_items.each do |line_item| %>
+  <div class="row">
+  	<div>
     <li><%= line_item.product.name %></li>
     <li><%= number_to_currency line_item.product.price %></li>
     <li>Qty: <%= line_item.quantity %></li>
+    <% @total += line_item.quantity %>
     <li>Subtotal: <%= number_to_currency line_item.line_item_total %></li>
+    </div>
+  </div>
   <% end %>
 </div>
+<br>
+<p>Total items in cart: <%= @total %></p> 
 
 <div>
   <%= link_to "Proceed to Checkout?", checkout_path, class: "btn btn-success" %>
