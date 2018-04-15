@@ -28,6 +28,7 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
+    authorize! :create, @product
     @product = Product.new(product_params)
 
     respond_to do |format|
